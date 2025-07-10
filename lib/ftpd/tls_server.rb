@@ -99,6 +99,14 @@ module Ftpd
           accept
         end
 
+        def write(*s)
+          encrypted? ? super : @io.write(*s)
+        end
+
+        def sysread(size)
+          encrypted? ? super : @io.sysread(size)
+        end
+
       end
     end
 
